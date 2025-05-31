@@ -1,0 +1,30 @@
+package com.iflytek.servelt;
+
+import com.iflytek.model.Order;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+
+/**
+ * Servlet implementation class GoodsDeletesServlet
+ */
+@WebServlet("/goods_deletes")
+public class GoodsDeletesServlet extends HttpServlet {
+
+	
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		Order o = (Order) request.getSession().getAttribute("order");
+		int goodsid = Integer.parseInt(request.getParameter("goodsid"));
+		o.deletes(goodsid);
+		response.getWriter().print("ok");
+	}
+
+}
